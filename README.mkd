@@ -1,0 +1,15 @@
+Google+ GIF Animation Killer
+============================
+
+WHAT IS THIS
+------------
+*STOP* GIF animation on Google+.
+Just install this user script.
+
+INSTALL
+-------
+https://github.com/koron/GooglePlusAnimationKiller/raw/master/gpanimekiller.user.js
+
+AUTHOR
+------
+MURAOKA Taro <koron.kaoriya@gmail.com>
