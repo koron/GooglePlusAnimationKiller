@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name Google+ GIF Animation Killer
 // @author KoRoN
-// @version Tue, 05 Jul 2011
+// @version 1.1
 // @namespace https://www.kaoriya.net/qb/gpanimekiller
 // @description Do you hate GIF animation? Stop it now!
 // @include https://plus.google.com/*
@@ -37,8 +37,49 @@
       });
       if (newsrc != src) {
         img.src = newsrc;
+        installController(img, src, newsrc);
       }
     }
+  }
+
+  function installController(img, runSrc, stopSrc) {
+    // Build and install DOM elemennts.
+
+    var ctrl = document.createElement('div');
+    ctrl.style.display = 'inline';
+    ctrl.style.padding = '4px';
+    ctrl.style.backgroundColor = '#ccc';
+    ctrl.style.position = 'absolute';
+    ctrl.style.bottom = '0px';
+    ctrl.style.right = '0px';
+    ctrl.style.fontSize = '6px';
+    img.parentNode.appendChild(ctrl);
+
+    var start = document.createElement('a');
+    start.innerText = 'Start';
+    ctrl.appendChild(start);
+
+    var stop = document.createElement('a');
+    stop.innerText = 'Stop';
+    stop.style.display = 'none';
+    ctrl.appendChild(stop);
+
+    // Install events.
+
+    ctrl.onmousedown = function(e) { e.cancelBubble = true; }
+    ctrl.onmouseup = function(e) { e.cancelBubble = true; }
+
+    start.onclick = function(e) {
+      start.style.display = 'none';
+      stop.style.display = 'inline';
+      img.src = runSrc;
+    };
+
+    stop.onclick = function(e) {
+      stop.style.display = 'none';
+      start.style.display = 'inline';
+      img.src = stopSrc;
+    };
   }
 
   function stopAllGIFAnimation() {
